@@ -1,6 +1,8 @@
 import express from "express";
 import employeesRouter from "./router.js";
 const app = express();
+app.use(express.json());
+
 export default app;
 
 import employees from "#db/employees";

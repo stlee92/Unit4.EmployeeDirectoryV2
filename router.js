@@ -29,11 +29,10 @@ router.route("/employees/:id").get((req, res) => {
 });
 
 router.route("/employees").post((req, res) => {
-  if (!req.body.name || !req.body.position) {
-    res.status(400).json({ err: "Please provide a name and/or position." });
+  const { name } = req.body;
+  if (!name) {
+    return res.status(400).json({ err: "Please provide a name." });
   } else {
-    res
-      .status(201)
-      .json({ addEmployee: addEmployee(req.body.name, req.body.position) });
+    res.status(201).json(addEmployee(name));
   }
 });
